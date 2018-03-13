@@ -1,3 +1,5 @@
+## the prototype of blockchain
+
 ### block
 > what is block? 
 >>block is the basic element of blockchain a blockchain is built by a bunch of blocks.
@@ -15,7 +17,9 @@ type Block struct{
 ```
 
 >how to create hash?
->> normally a hash is created by using hash argorithm . the seed of the hash normally using the block content which is timestamp ,data , and privous hash.
+>> normally a hash is created by using hash argorithm . the seed of the hash normally using the block content which is timestamp ,data , and privous hash.how do we calculate the hashes? The way hashes are calculates is very important feature of blockchain, and it’s this feature that makes blockchain secure. The thing is that calculating a hash is a computationally difficult operation, it takes some time even on fast computers (that’s why people buy powerful GPUs to mine Bitcoin). This is an intentional architectural design, which makes adding new blocks difficult, thus preventing their modification after they’re added. We’ll discuss and implement this mechanism in a future article.
+
+
 
 ```go
 func (b *Block) setHash(){
@@ -61,7 +65,7 @@ func createBlockChain() *Blockchain{
 ```
 
 > what do you mean add a block to a blockchain?
->> In pow mining algorithem. when a miner calculated the right nounce then the miner become the author of a block ,which means the miner has the right to add the mined block to the blockchain. 
+>> In pow mining algorithem. when a miner calculated the right nonce then the miner become the author of a block ,which means the miner has the right to add the mined block to the blockchain. 
 ```go
 func (bc *Blockchain) addBlock(data string){
     prevBlock := bc.blocks[bc.blocks.length -1]
@@ -70,6 +74,10 @@ func (bc *Blockchain) addBlock(data string){
     append(bc.blocks,newBlock)
 }
 ```
+>conclusion 
+>>We built a very simple blockchain prototype: it’s just an array of blocks, with each block having a connection to the previous one. The actual blockchain is much more complex though. In our blockchain adding new blocks is easy and fast, but in real blockchain adding new blocks requires some work: one has to perform some heavy computations before getting a permission to add block (this mechanism is called Proof-of-Work). Also, blockchain is a distributed database that has no single decision maker. Thus, a new block must be confirmed and approved by other participants of the network (this mechanism is called consensus). And there’re no transactions in our blockchain yet!
+
+
 
 
 
