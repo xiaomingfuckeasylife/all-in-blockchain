@@ -15,11 +15,12 @@ another thing about pow is that solve the problem is hard but verify it is easy 
 >>> 4. check if the hash meets the requirement . if not restart from 2 ,if yes .break out the loop.
 
 ## implementation 
+> the block mining difficulty . for simplicity we will using a global constant variable . but in bitcoin the block creation time is 10 minutes so the mining difficulty is changed accourding to the globla mining power .
 ```go
 constant targetBits = 24 . 
 ```
-> the block mining difficulty . for simplicity we will using a global constant variable . but in bitcoin the block creation time is 10 minutes so the mining difficulty is changed accourding to the globla mining power . 
-
+ 
+> i use a proofOfwork struct to hold the block and its target , the target is used to compare the computed hash value. the target is calculated by left shift 1 to a certain number. 
 ```go
 type ProofOfWork struct {
     block  *Block
@@ -32,8 +33,8 @@ func NewProofOfWork(b *Block) *ProofOfWork{
     return &ProofOfWork{b,target}
 }
 ```
-> i use a proofOfwork struct to hold the block and its target , the target is used to compare the computed hash value. the target is calculated by left shift 1 to a certain number. 
 
+> prepare the computated data which will be used to compare to the target hash value . if the data is valid the data will be used to calculate current block hash.
 ```go
 func (pow *ProofOfWork) prepareData(nonce int) []byte{
     
@@ -42,8 +43,7 @@ func (pow *ProofOfWork) prepareData(nonce int) []byte{
     return data
 }
 ```
-> prepare the computated data which will be used to compare to the target hash value . if the data is valid the data will be used to calculate current block hash.
-
+> calculate the rightful nonce . 
 ```go
 func (pow *ProofOfWork) run() (int , []byte){
     var hashInt big.Int
@@ -64,7 +64,7 @@ func (pow *ProofOfWork) run() (int , []byte){
     return nonce , hash[:]
 }
 ```
-> calculate the rightful nonce . 
+> validate if the nonce is right .
 
 ```go
 func (pow *ProofOfwork) validate() bool{
@@ -81,7 +81,9 @@ type Block struct{
 }
 
 ```
-> validate if the nonce is right .
+
+>now if we create a new block we have to mining it first calculate the rightful nonce and hash . then we can add the blockchain . 
+
 
 ```go
 func NewBlock(data string, prevBlockHash []byte) *Block{
@@ -93,5 +95,6 @@ func NewBlock(data string, prevBlockHash []byte) *Block{
     return block
 }
 ```
+> conclusion 
+>> Our blockchain is a step closer to its actual architecture: adding blocks now requires hard work, thus mining is possible. But it still lacks some crucial features: the blockchain database is not persistent, there are no wallets, addresses, transactions, and there’s no consensus mechanism. All these things we’ll implement in future articles, and for now, happy mining!
 
->now if we create a new block we have to mining it first calculate the rightful nonce and hash . then we can add the blockchain . 
