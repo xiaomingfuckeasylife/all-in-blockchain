@@ -18,3 +18,14 @@ here is the thing . bob know alice very well , and they have finantial interacti
 
 >> Conclution. from above we can see that bob and alice can transfer multiple times using lightning network and only interact with the bitcoin mainet twice . first is open a Funding tx and second is close the confirm tx.  so cool . right . 
 
+>> now let talk about the second part . transfer money to somebody we don't have connection right now.  
+![HTLC](https://github.com/xiaomingfuckeasylife/imgStore/blob/master/HTLC.png)
+>>> * Now . Alice want to send 1 btc to David . but she has no connection to david so she want to connect david through her friend . David give him a hash code before and he told her that if you want to send money to me , send money to someone who know this code , they will send money to me eventually. 
+>>> * so, now Alice create a contract with his friend bob , alice hope bob would give get him a hashcode in a certain time if so alice will  give bob 1 btc with some more fee. and if not get the hash code at a certain time the contract will be cancered.
+>>> * bob tell his friend cindy and they also created a contract with a time limit on it . 
+>>> * cindy tell his friend bob , do you have this hashcode . since bob is the one created the code so he absolutely know the hashcode. so david give cindy the code ,got the 1 btc payment . cindy got some fee ,bob got some fee , alice successfully send payment through her friend .
+
+>> conclution . the hole process is off chain. with more people interact in the network we can easily connect to everybody within 5 node . we can imagine this technology is gonna change a lot of things.
+
+
+>so this is the basic two approaches of Lightning network. i am corver the code in this article . stay tuned . 
