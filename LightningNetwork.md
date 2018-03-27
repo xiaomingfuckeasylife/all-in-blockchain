@@ -28,4 +28,4 @@ here is the thing . bob know alice very well , and they have finantial interacti
 >> conclution . the hole process is off chain. with more people interact in the network we can easily connect to everybody within 5 node . we can imagine this technology is gonna change a lot of things.
 
 
->so this is the basic two approaches of Lightning network. i am corver the code in this article . stay tuned . 
+>so this is the basic two approaches of Lightning network. i will corver some code in future article . so stay tuned . 
